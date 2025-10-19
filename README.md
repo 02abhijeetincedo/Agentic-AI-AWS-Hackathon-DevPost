@@ -1,7 +1,8 @@
 Agentic Expense Guardian is an intelligent, serverless AI agent built on AWS to empower users with financial management through natural language processing.
 It processes queries to track expenses, calculate savings, generate personalized budget tips, and suggest investments based on savings history.
 The agent leverages AWS Bedrock with Anthropic Claude for agentic reasoning, AWS Lambda for processing, AWS S3 for storage, and API Gateway for user interaction.
-Key Features
+
+### Key Features
 
 **Natural Language Processing:** Parses queries to extract expense details (date, item, amount) and categorize them (e.g., Food, Housing).
 
@@ -15,7 +16,74 @@ Key Features
 
 ### AWS Components:
 **AWS Bedrock (Anthropic Claude-3):** Core AI for parsing queries, categorizing expenses, and generating tips and investment suggestions.
+
 **AWS Lambda:** Serverless function to process queries, invoke Bedrock, and manage S3 operations.
+
 **AWS API Gateway:** REST endpoint (POST /expense) for user queries.
+
 **AWS S3:** Persistent storage with structured folders (expenses/, savings/, reports/, investments/).
+
 **IAM Roles:** Permissions for Lambda to access S3 and Bedrock.
+
+
+### Setup Instructions:
+Step 1: Create an S3 Bucket
+                            Set:-> Bucket name: job-agent-bucket.
+                                   Region: ap-south-1.
+                                   Create folders: expenses/, savings/, reports/, investments/.
+
+Step 2: Create a Lambda Function
+                                Set:-> Function name: ExpenseAgentLambda.
+                                       Runtime: Python 3.11.9
+                                       Region: ap-south-1.
+
+Under Permissions, create a new IAM role (AbhijeetAgentBot) with:
+
+```{
+  "Version": "2012-10-17",
+  "Id": "default",
+  "Statement": [
+    {
+      "Sid": "resumeagentPolicy-001",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::876379899159:role/AbhijeetAgentBot"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:ap-south-1:876379899159:function:resumeagent"
+    },
+    {
+      "Sid": "1da635d0-447d-58af-81a1-70e83ca4423e",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:ap-south-1:876379899159:function:resumeagent",
+      "Condition": {
+        "ArnLike": {
+          "AWS:SourceArn": "arn:aws:execute-api:ap-south-1:876379899159:b4ogptlmnl/*/POST/expense"
+        }
+      }
+    }
+  ]
+}
+
+```
+
+Copy the Lambda code from lambda_function.py (below) and paste it into the Lambda editor.
+
+Set: Timeout: 60 seconds.
+     Memory: 512 MB.
+
+Step 4: Set Up API Gateway
+
+                          Set: API name: ExpenseAgentAPI.
+                          
+                               Endpoint: Regional (ap-south-1).
+                               
+                               Create a resource: /expense, method: POST.
+                               
+                               Integration: Lambda function (resumeagent).
+
+
