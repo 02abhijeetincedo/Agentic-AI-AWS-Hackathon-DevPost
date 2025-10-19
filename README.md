@@ -4,7 +4,7 @@ It processes queries to track expenses, calculate savings, generate personalized
 The agent leverages AWS Bedrock with Anthropic Claude for agentic reasoning, AWS Lambda for processing, AWS S3 for storage, and API Gateway for user interaction.
 
 
-### Project Video link and Architecture: 
+### Project Architecture: 
                         Go to git file and open ***Expenses_Agent_structure.drawio.png*** 
 
 ### Key Features
