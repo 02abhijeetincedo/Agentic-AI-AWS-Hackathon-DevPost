@@ -6,6 +6,9 @@ The agent leverages AWS Bedrock with Anthropic Claude for agentic reasoning, AWS
 
 ### Project Architecture: 
                         Go to git file and open ***Expenses_Agent_structure.drawio.png*** 
+                        
+### Project Videos: 
+                        Go to git file and open ***.mp4 files*** 
 
 ### Key Features
 
