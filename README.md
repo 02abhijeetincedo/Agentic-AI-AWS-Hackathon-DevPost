@@ -30,14 +30,14 @@ The agent leverages AWS Bedrock with Anthropic Claude for agentic reasoning, AWS
 Step 1: Create an S3 Bucket
                             Set:-> Bucket name: job-agent-bucket.
                                    Region: ap-south-1.
-                                   Create folders: expenses/, savings/, reports/, investments/.
+                                   
 
 Step 2: Create a Lambda Function
-                                Set:-> Function name: ExpenseAgentLambda.
+                                Set:-> Function name: resumeagent.
                                        Runtime: Python 3.11.9
                                        Region: ap-south-1.
 
-Under Permissions, create a new IAM role (AbhijeetAgentBot) with:
+Under Permissions, create a new IAM role (AbhijeetAgentBot):
 
 ```{
   "Version": "2012-10-17",
@@ -71,10 +71,10 @@ Under Permissions, create a new IAM role (AbhijeetAgentBot) with:
 
 ```
 
-Step 3: Copy the Lambda code from lambda_function.py (below) and paste it into the Lambda editor.
+Step 3: Copy the Lambda code from lambda_function.py from gihub and paste it into the Lambda editor.
 
-Set: Timeout: 60 seconds.
-     Memory: 512 MB.
+Set General Configuration: Timeout: 60 seconds.
+                           Memory: 512 MB.
 
 Step 4: Set Up API Gateway
 
@@ -85,5 +85,7 @@ Step 4: Set Up API Gateway
                                Create a resource: /expense, method: POST.
                                
                                Integration: Lambda function (resumeagent).
+
+Step 5: Configure S3 Bucket Policy
 
 
