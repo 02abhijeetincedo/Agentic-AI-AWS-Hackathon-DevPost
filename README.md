@@ -71,7 +71,7 @@ Under Permissions, create a new IAM role (AbhijeetAgentBot) with:
 
 ```
 
-Copy the Lambda code from lambda_function.py (below) and paste it into the Lambda editor.
+Step 3: Copy the Lambda code from lambda_function.py (below) and paste it into the Lambda editor.
 
 Set: Timeout: 60 seconds.
      Memory: 512 MB.
