@@ -1,6 +1,11 @@
+
 Agentic Expense Guardian is an intelligent, serverless AI agent built on AWS to empower users with financial management through natural language processing.
 It processes queries to track expenses, calculate savings, generate personalized budget tips, and suggest investments based on savings history.
 The agent leverages AWS Bedrock with Anthropic Claude for agentic reasoning, AWS Lambda for processing, AWS S3 for storage, and API Gateway for user interaction.
+
+
+### Project Architecture: 
+                        Go to git file and open ***Expenses_Agent_structure.drawio.png*** 
 
 ### Key Features
 
@@ -86,6 +91,6 @@ Step 4: Set Up API Gateway
                                
                                Integration: Lambda function (resumeagent).
 
-Step 5: Configure S3 Bucket Policy
+
 
 
